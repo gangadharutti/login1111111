@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react'
+import { api } from './Componment/api'
+import { Data } from './Componment/data'
+import Form from './Componment/form'
+import { Data1 } from './Componment/data'
+const App = () => {
+const [useData,setUseData]=useState(false)
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const handlerSubmit =()=>{
+  setUseData (true)
 }
 
-export default App;
+
+//   useEffect=()=>{
+//     getData()
+//   }
+// const getData= async ()=>{
+//   const sareesData = await api()
+//   if(sareesData.products === "success"){
+//     setData(sareesData.data)
+//   }
+//   else{
+//     alert("not came")
+//   }
+// }
+
+
+  return (
+    <div>
+  <center>
+      {Data.sarees.map(item=><li key={item.id} >{item.title},{item.price},{item.description},{item.category},{item.image}</li>)}
+      <button onClick={handlerSubmit}>click</button>
+      {useData === true && <Form/>}
+      </center>
+    </div>
+  )
+}
+
+export default App
